@@ -18,6 +18,7 @@ const ChunkedStatGraphs = lazy(() => import(/* webpackChunkName: "graphs" */'@/c
 
 const ServerConsole = () => {
     const isInstalling = ServerContext.useStoreState(state => state.server.data!.isInstalling);
+    const isSuspended = ServerContext.useStoreState(state => state.server.data!.isSuspended);
     const isTransferring = ServerContext.useStoreState(state => state.server.data!.isTransferring);
     const eggFeatures = ServerContext.useStoreState(state => state.server.data!.eggFeatures, isEqual);
 
@@ -25,29 +26,40 @@ const ServerConsole = () => {
         <ServerContentBlock title={'Konsole'} css={tw`flex flex-wrap`}>
             <div css={tw`w-full lg:w-1/4`}>
                 <ServerDetailsBlock/>
-                {isInstalling ?
-                    <div css={tw`mt-4 rounded bg-yellow-500 p-3`}>
-                        <ContentContainer>
-                            <p css={tw`text-sm text-yellow-900`}>
-                                This server is currently running its installation process and most actions are
-                                unavailable.
-                            </p>
-                        </ContentContainer>
-                    </div>
-                    :
-                    isTransferring ?
-                        <div css={tw`mt-4 rounded bg-yellow-500 p-3`}>
-                            <ContentContainer>
-                                <p css={tw`text-sm text-yellow-900`}>
-                                    This server is currently being transferred to another node and all actions
-                                    are unavailable.
-                                </p>
-                            </ContentContainer>
-                        </div>
-                        :
-                        <Can action={[ 'control.start', 'control.stop', 'control.restart' ]} matchAny>
-                            <PowerControls/>
-                        </Can>
+                {
+                    (() => {
+                        if (isInstalling) {
+                            return <div css={tw`mt-4 rounded bg-yellow-500 p-3`}>
+                                <ContentContainer>
+                                    <p css={tw`text-sm text-yellow-900`}>
+                                        This server is currently running its installation process and most actions are
+                                        unavailable.
+                                    </p>
+                                </ContentContainer>
+                            </div>
+                        } else if (isSuspended) {
+                            return <div css={tw`mt-4 rounded bg-red-500 p-3`}>
+                                <ContentContainer>
+                                    <p css={tw`text-sm text-red-900`}>
+                                        Der Server wurde Suspendiert, weshalb der Server nicht gestartet werden kann.
+                                    </p>
+                                </ContentContainer>
+                            </div>
+                        } else if (isTransferring) {
+                            return <div css={tw`mt-4 rounded bg-red-500 p-3`}>
+                                <ContentContainer>
+                                    <p css={tw`text-sm text-red-900`}>
+                                        This server is currently being transferred to another node and all actions
+                                        are unavailable.
+                                    </p>
+                                </ContentContainer>
+                            </div>
+                        } else {
+                            return <Can action={[ 'control.start', 'control.stop', 'control.restart' ]} matchAny>
+                                <PowerControls/>
+                            </Can>
+                        }
+                    })()
                 }
             </div>
             <div css={tw`w-full lg:w-3/4 mt-4 lg:mt-0 lg:pl-4`}>

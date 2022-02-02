@@ -137,7 +137,7 @@ const ServerRouter = ({ match, location }: RouteComponentProps<{ id: string }>) 
                     <InstallListener/>
                     <TransferListener/>
                     <WebsocketHandler/>
-                    {(inConflictState && (!rootAdmin || (rootAdmin && !location.pathname.endsWith(`/server/${id}`)))) ?
+                    {(inConflictState && !rootAdmin) ?
                         <ConflictStateRenderer/>
                         :
                         <ErrorBoundary>

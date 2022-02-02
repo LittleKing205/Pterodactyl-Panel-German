@@ -383,7 +383,7 @@ class Server extends Model
     public function validateCurrentState()
     {
         if (
-            $this->isSuspended() ||
+            ($this->isSuspended() && $this->user->root_admin) ||
             !$this->isInstalled() ||
             $this->status === self::STATUS_RESTORING_BACKUP ||
             !is_null($this->transfer)
