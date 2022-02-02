@@ -10,7 +10,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class UpgradeCommand extends Command
 {
-    protected const DEFAULT_URL = 'https://github.com/pterodactyl/panel/releases/%s/panel.tar.gz';
+    protected const DEFAULT_URL = 'https://github.com/LittleKing205/panel/releases/%s/panel.tar.gz';
 
     /** @var string */
     protected $signature = 'p:upgrade
