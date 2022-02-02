@@ -3,6 +3,15 @@ This file is a running track of new features and fixes to each version of the pa
 
 This project follows [Semantic Versioning](http://semver.org) guidelines.
 
+## v1.7.1
+### Changed
+* Admins can now see into suspended Servers.
+* 90% from client Site was translated in German.
+
+### Removed
+* Removed Docker creation on Release. 
+
+
 ## v1.7.0
 ### Fixed
 * Fixes typo in message shown to user when deleting a database.
