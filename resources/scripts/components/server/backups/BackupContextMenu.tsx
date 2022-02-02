@@ -105,28 +105,25 @@ export default ({ backup }: Props) => {
         <>
             <ConfirmationModal
                 visible={modal === 'unlock'}
-                title={'Unlock this backup?'}
+                title={'Dieses Backup entsperren?'}
                 onConfirmed={onLockToggle}
                 onModalDismissed={() => setModal('')}
-                buttonText={'Yes, unlock'}
+                buttonText={'Yep, Entsperren'}
             >
-                Are you sure you want to unlock this backup? It will no longer be protected from automated or
-                accidental deletions.
+                Möchtest du dieses Backup wirklich entsperren? Es ist nicht mehr vor automatisiertem oder versehentlichem Löschen geschützt.
             </ConfirmationModal>
             <ConfirmationModal
                 visible={modal === 'restore'}
-                title={'Restore this backup?'}
-                buttonText={'Restore backup'}
+                title={'Backup wiederhestellen?'}
+                buttonText={'Backup wiederstellen'}
                 onConfirmed={() => doRestorationAction()}
                 onModalDismissed={() => setModal('')}
             >
                 <p css={tw`text-neutral-300`}>
-                    This server will be stopped in order to restore the backup. Once the backup has started you will
-                    not be able to control the server power state, access the file manager, or create additional backups
-                    until it has completed.
+                    Dieser Server wird gestoppt, um die Sicherung wiederherzustellen. Sobald die Sicherung gestartet wurde, kannst du den Energiezustand des Servers nicht steuern, auf den Dateimanager zugreifen oder zusätzliche Sicherungen erstellen, bis sie abgeschlossen ist.
                 </p>
                 <p css={tw`text-neutral-300 mt-4`}>
-                    Are you sure you want to continue?
+                    Möchtest du wirklich fortfahren?
                 </p>
                 <p css={tw`mt-4 -mb-2 bg-neutral-900 p-3 rounded`}>
                     <label
@@ -141,19 +138,18 @@ export default ({ backup }: Props) => {
                             checked={truncate}
                             onChange={() => setTruncate(s => !s)}
                         />
-                        Remove all files and folders before restoring this backup.
+                        Entferne alle Dateien und Ordner, bevor Sie diese Sicherung wiederherstellen.
                     </label>
                 </p>
             </ConfirmationModal>
             <ConfirmationModal
                 visible={modal === 'delete'}
-                title={'Delete this backup?'}
-                buttonText={'Yes, delete backup'}
+                title={'Backup löschen?'}
+                buttonText={'Ja, Backup löschen'}
                 onConfirmed={() => doDeletion()}
                 onModalDismissed={() => setModal('')}
             >
-                Are you sure you wish to delete this backup? This is a permanent operation and the backup cannot
-                be recovered once deleted.
+                Möchtest du dieses Backup wirklich löschen? Dies ist ein permanenter Vorgang und die Sicherung kann nach dem Löschen nicht wiederhergestellt werden.
             </ConfirmationModal>
             <SpinnerOverlay visible={loading} fixed/>
             {backup.isSuccessful ?
@@ -177,7 +173,7 @@ export default ({ backup }: Props) => {
                         <Can action={'backup.restore'}>
                             <DropdownButtonRow onClick={() => setModal('restore')}>
                                 <FontAwesomeIcon fixedWidth icon={faBoxOpen} css={tw`text-xs`}/>
-                                <span css={tw`ml-2`}>Restore</span>
+                                <span css={tw`ml-2`}>Wiederherstellen</span>
                             </DropdownButtonRow>
                         </Can>
                         <Can action={'backup.delete'}>
@@ -193,7 +189,7 @@ export default ({ backup }: Props) => {
                                 {!backup.isLocked &&
                                 <DropdownButtonRow danger onClick={() => setModal('delete')}>
                                     <FontAwesomeIcon fixedWidth icon={faTrashAlt} css={tw`text-xs`}/>
-                                    <span css={tw`ml-2`}>Delete</span>
+                                    <span css={tw`ml-2`}>Löschen</span>
                                 </DropdownButtonRow>
                                 }
                             </>

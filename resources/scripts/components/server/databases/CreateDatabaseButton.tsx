@@ -18,10 +18,10 @@ interface Values {
 
 const schema = object().shape({
     databaseName: string()
-        .required('A database name must be provided.')
-        .min(3, 'Database name must be at least 3 characters.')
-        .max(48, 'Database name must not exceed 48 characters.')
-        .matches(/^[A-Za-z0-9_\-.]{3,48}$/, 'Database name should only contain alphanumeric characters, underscores, dashes, and/or periods.'),
+        .required('Es muss ein Datenbankname angegeben werden.')
+        .min(3, 'Der Datenbankname muss mindestens 3 Zeichen lang sein.')
+        .max(48, 'Der Datenbankname darf 48 Zeichen nicht überschreiten.')
+        .matches(/^[A-Za-z0-9_\-.]{3,48}$/, 'Der Datenbankname sollte nur alphanumerische Zeichen, Unterstriche, Bindestriche und/oder Punkte enthalten.'),
     connectionsFrom: string()
         .required('A connection value must be provided.')
         .matches(/^([0-9]{1,3}|%)(\.([0-9]{1,3}|%))?(\.([0-9]{1,3}|%))?(\.([0-9]{1,3}|%))?$/, 'A valid connection address must be provided.'),
@@ -66,18 +66,18 @@ export default () => {
                             }}
                         >
                             <FlashMessageRender byKey={'database:create'} css={tw`mb-6`}/>
-                            <h2 css={tw`text-2xl mb-6`}>Create new database</h2>
+                            <h2 css={tw`text-2xl mb-6`}>Eine neue Datenbank erstellen</h2>
                             <Form css={tw`m-0`}>
                                 <Field
                                     type={'string'}
                                     id={'database_name'}
                                     name={'databaseName'}
-                                    label={'Database Name'}
-                                    description={'A descriptive name for your database instance.'}
+                                    label={'Datenbank Name'}
+                                    description={'Ein beschreibender Name für Deine neue Datenbank. '}
                                 />
-                                <div css={tw`mt-6`}>
+                                <div css={tw`hidden mt-6`}>
                                     <Field
-                                        type={'string'}
+                                        type={'hidden'}
                                         id={'connections_from'}
                                         name={'connectionsFrom'}
                                         label={'Connections From'}
@@ -94,7 +94,7 @@ export default () => {
                                         Cancel
                                     </Button>
                                     <Button css={tw`w-full mt-4 sm:w-auto sm:mt-0`} type={'submit'}>
-                                        Create Database
+                                        Datenbank erstellen
                                     </Button>
                                 </div>
                             </Form>
@@ -103,7 +103,7 @@ export default () => {
                 }
             </Formik>
             <Button onClick={() => setVisible(true)}>
-                New Database
+                Neue Datenbank
             </Button>
         </>
     );

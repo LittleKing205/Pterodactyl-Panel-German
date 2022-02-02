@@ -4,7 +4,7 @@ import { faEthernet, faHdd, faMemory, faMicrochip, faServer } from '@fortawesome
 import { Link } from 'react-router-dom';
 import { Server } from '@/api/server/getServer';
 import getServerResourceUsage, { ServerPowerState, ServerStats } from '@/api/server/getServerResourceUsage';
-import { bytesToHuman, megabytesToHuman, formatIp } from '@/helpers';
+import { bytesToHuman, megabytesToHuman } from '@/helpers';
 import tw from 'twin.macro';
 import GreyRowBox from '@/components/elements/GreyRowBox';
 import Spinner from '@/components/elements/Spinner';
@@ -74,9 +74,9 @@ export default ({ server, className }: { server: Server; className?: string }) =
         alarms.disk = server.limits.disk === 0 ? false : isAlarmState(stats.diskUsageInBytes, server.limits.disk);
     }
 
-    const diskLimit = server.limits.disk !== 0 ? megabytesToHuman(server.limits.disk) : 'Unlimited';
-    const memoryLimit = server.limits.memory !== 0 ? megabytesToHuman(server.limits.memory) : 'Unlimited';
-    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : 'Unlimited';
+    const diskLimit = server.limits.disk !== 0 ? megabytesToHuman(server.limits.disk) : 'Unbegrentzt';
+    const memoryLimit = server.limits.memory !== 0 ? megabytesToHuman(server.limits.memory) : 'Unbegrentzt';
+    const cpuLimit = server.limits.cpu !== 0 ? server.limits.cpu + ' %' : 'Unbegrentzt';
 
     return (
         <StatusIndicatorBox as={Link} to={`/server/${server.id}`} className={className} $status={stats?.status}>
@@ -97,7 +97,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     {
                         server.allocations.filter(alloc => alloc.isDefault).map(allocation => (
                             <React.Fragment key={allocation.ip + allocation.port.toString()}>
-                                {allocation.alias || formatIp(allocation.ip)}:{allocation.port}
+                                {allocation.alias || allocation.ip}:{allocation.port}
                             </React.Fragment>
                         ))
                     }
@@ -108,7 +108,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
                     isSuspended ?
                         <div css={tw`flex-1 text-center`}>
                             <span css={tw`bg-red-500 rounded px-2 py-1 text-red-100 text-xs`}>
-                                {server.status === 'suspended' ? 'Suspended' : 'Connection Error'}
+                                {server.status === 'suspended' ? 'Suspendiert' : 'Verbindungs Fehler'}
                             </span>
                         </div>
                         :
@@ -118,11 +118,11 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                     {server.isTransferring ?
                                         'Transferring'
                                         :
-                                        server.status === 'installing' ? 'Installing' : (
+                                        server.status === 'installing' ? 'Installiert' : (
                                             server.status === 'restoring_backup' ?
-                                                'Restoring Backup'
+                                                'Wiederherstellen'
                                                 :
-                                                'Unavailable'
+                                                'Unerreichbar'
                                         )
                                     }
                                 </span>
@@ -138,7 +138,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                     {stats.cpuUsagePercent.toFixed(2)} %
                                 </IconDescription>
                             </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {cpuLimit}</p>
+                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>von {cpuLimit}</p>
                         </div>
                         <div css={tw`flex-1 ml-4 sm:block hidden`}>
                             <div css={tw`flex justify-center`}>
@@ -147,7 +147,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                     {bytesToHuman(stats.memoryUsageInBytes)}
                                 </IconDescription>
                             </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {memoryLimit}</p>
+                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>von {memoryLimit}</p>
                         </div>
                         <div css={tw`flex-1 ml-4 sm:block hidden`}>
                             <div css={tw`flex justify-center`}>
@@ -156,7 +156,7 @@ export default ({ server, className }: { server: Server; className?: string }) =
                                     {bytesToHuman(stats.diskUsageInBytes)}
                                 </IconDescription>
                             </div>
-                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>of {diskLimit}</p>
+                            <p css={tw`text-xs text-neutral-600 text-center mt-1`}>von {diskLimit}</p>
                         </div>
                     </React.Fragment>
                 }

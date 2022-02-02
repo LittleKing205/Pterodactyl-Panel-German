@@ -7,7 +7,7 @@ import ServerContentBlock from '@/components/elements/ServerContentBlock';
 import ServerDetailsBlock from '@/components/server/ServerDetailsBlock';
 import isEqual from 'react-fast-compare';
 import PowerControls from '@/components/server/PowerControls';
-import { EulaModalFeature, JavaVersionModalFeature, GSLTokenModalFeature } from '@feature/index';
+import { EulaModalFeature, JavaVersionModalFeature } from '@feature/index';
 import ErrorBoundary from '@/components/elements/ErrorBoundary';
 import Spinner from '@/components/elements/Spinner';
 
@@ -22,7 +22,7 @@ const ServerConsole = () => {
     const eggFeatures = ServerContext.useStoreState(state => state.server.data!.eggFeatures, isEqual);
 
     return (
-        <ServerContentBlock title={'Console'} css={tw`flex flex-wrap`}>
+        <ServerContentBlock title={'Konsole'} css={tw`flex flex-wrap`}>
             <div css={tw`w-full lg:w-1/4`}>
                 <ServerDetailsBlock/>
                 {isInstalling ?
@@ -60,7 +60,6 @@ const ServerConsole = () => {
                 <React.Suspense fallback={null}>
                     {eggFeatures.includes('eula') && <EulaModalFeature/>}
                     {eggFeatures.includes('java_version') && <JavaVersionModalFeature/>}
-                    {eggFeatures.includes('gsl_token') && <GSLTokenModalFeature/>}
                 </React.Suspense>
             </div>
         </ServerContentBlock>

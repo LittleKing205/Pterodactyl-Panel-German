@@ -69,16 +69,16 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             onSubmit={onSubmit}
             initialValues={{ username: '', password: '' }}
             validationSchema={object().shape({
-                username: string().required('A username or email must be provided.'),
-                password: string().required('Please enter your account password.'),
+                username: string().required('Es muss ein Benutzername oder eine E-Mail-Adresse angegeben werden.'),
+                password: string().required('Bitte gib dein Konto Password ein.'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Login to Continue'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'Login'} css={tw`w-full flex`}>
                     <Field
                         light
                         type={'text'}
-                        label={'Username or Email'}
+                        label={'Benutzername oder E-Mail'}
                         name={'username'}
                         disabled={isSubmitting}
                     />
@@ -86,7 +86,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                         <Field
                             light
                             type={'password'}
-                            label={'Password'}
+                            label={'Passwort'}
                             name={'password'}
                             disabled={isSubmitting}
                         />
@@ -116,7 +116,7 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                             to={'/auth/password'}
                             css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
                         >
-                            Forgot password?
+                            Passwort vergessen
                         </Link>
                     </div>
                 </LoginFormContainer>

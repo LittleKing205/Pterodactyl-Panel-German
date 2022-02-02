@@ -85,41 +85,41 @@ const EditScheduleModal = ({ schedule }: Props) => {
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <h3 css={tw`text-2xl mb-6`}>{schedule ? 'Edit schedule' : 'Create new schedule'}</h3>
+                    <h3 css={tw`text-2xl mb-6`}>{schedule ? 'Zeitplan bearbeiten' : 'Neuen Zeitplan erstellen'}</h3>
                     <FlashMessageRender byKey={'schedule:edit'} css={tw`mb-6`}/>
                     <Field
                         name={'name'}
-                        label={'Schedule name'}
-                        description={'A human readable identifer for this schedule.'}
+                        label={'Zeitplan Name'}
+                        description={'Eine für Menschen lesbare Kennung für diesen Zeitplan. '}
                     />
                     <div css={tw`grid grid-cols-2 sm:grid-cols-5 gap-4 mt-6`}>
                         <Field name={'minute'} label={'Minute'}/>
-                        <Field name={'hour'} label={'Hour'}/>
-                        <Field name={'dayOfMonth'} label={'Day of month'}/>
-                        <Field name={'month'} label={'Month'}/>
-                        <Field name={'dayOfWeek'} label={'Day of week'}/>
+                        <Field name={'hour'} label={'Stunde'}/>
+                        <Field name={'dayOfMonth'} label={'Tag des Monats'}/>
+                        <Field name={'month'} label={'Monat'}/>
+                        <Field name={'dayOfWeek'} label={'Tag der Woche'}/>
                     </div>
                     <p css={tw`text-neutral-400 text-xs mt-2`}>
-                        The schedule system supports the use of Cronjob syntax when defining when tasks should begin
-                        running. Use the fields above to specify when these tasks should begin running.
+                        Das Zeitplansystem unterstützt die Verwendung der Cronjob-Syntax beim Definieren, wann Aufgaben ausgeführt werden sollen.
+                        Verwende die Felder oben, um anzugeben, wann diese Tasks ausgeführt werden sollen. 
                     </p>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'onlyWhenOnline'}
-                            description={'Only execute this schedule when the server is in a running state.'}
-                            label={'Only When Server Is Online'}
+                            description={'Führe diesen Zeitplan nur aus, wenn der Server ausgeführt wird.'}
+                            label={'Nur wenn der Server online ist'}
                         />
                     </div>
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'enabled'}
-                            description={'This schedule will be executed automatically if enabled.'}
-                            label={'Schedule Enabled'}
+                            description={'Dieser Zeitplan wird automatisch ausgeführt, wenn er aktiviert ist.'}
+                            label={'Zeitplan Aktiv'}
                         />
                     </div>
                     <div css={tw`mt-6 text-right`}>
                         <Button css={tw`w-full sm:w-auto`} type={'submit'} disabled={isSubmitting}>
-                            {schedule ? 'Save changes' : 'Create schedule'}
+                            {schedule ? 'Änderungen speichern' : 'Zeitplan erstellen'}
                         </Button>
                     </div>
                 </Form>

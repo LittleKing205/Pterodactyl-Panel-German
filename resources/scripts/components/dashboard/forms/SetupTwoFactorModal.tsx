@@ -72,28 +72,27 @@ const SetupTwoFactorModal = () => {
             initialValues={{ code: '' }}
             validationSchema={object().shape({
                 code: string()
-                    .required('You must provide an authentication code to continue.')
-                    .matches(/^(\d){6}$/, 'Authenticator code must be 6 digits.'),
+                    .required('Du musst einen Authentifizierungscode eingeben, um fortzufahren.')
+                    .matches(/^(\d){6}$/, 'Der Authentifizierungscode muss 6-stellig sein.'),
             })}
         >
             {recoveryTokens.length > 0 ?
                 <>
-                    <h2 css={tw`text-2xl mb-4`}>Two-factor authentication enabled</h2>
+                    <h2 css={tw`text-2xl mb-4`}>Zwei-Faktor-Authentifizierung aktiviert</h2>
                     <p css={tw`text-neutral-300`}>
-                        Two-factor authentication has been enabled on your account. Should you lose access to
-                        your authenticator device, you&apos;ll need to use one of the codes displayed below in order to access your
-                        account.
+                        Die Zwei-Faktor-Authentifizierung wurde für dein Konto aktiviert. Solltest du den Zugriff auf dein Authentifizierungsgerät verlieren, 
+                        müsst du einen der unten angezeigten Codes verwenden, um auf dein Konto zuzugreifen.
                     </p>
                     <p css={tw`text-neutral-300 mt-4`}>
-                        <strong>These codes will not be displayed again.</strong> Please take note of them now
-                        by storing them in a secure repository such as a password manager.
+                        <strong>Diese Codes werden nicht erneut angezeigt.</strong> Bitte notiere Sie dir diese jetzt,
+                        indem du sie in einem sicheren Aufbewahrungsort wie einem Passwort-Manager speicherst. 
                     </p>
                     <pre css={tw`text-sm mt-4 rounded font-mono bg-neutral-900 p-4`}>
                         {recoveryTokens.map(token => <code key={token} css={tw`block mb-1`}>{token}</code>)}
                     </pre>
                     <div css={tw`text-right`}>
                         <Button css={tw`mt-6`} onClick={dismiss}>
-                            Close
+                            Schließen
                         </Button>
                     </div>
                 </>
@@ -123,12 +122,12 @@ const SetupTwoFactorModal = () => {
                                     id={'code'}
                                     name={'code'}
                                     type={'text'}
-                                    title={'Code From Authenticator'}
-                                    description={'Enter the code from your authenticator device after scanning the QR image.'}
+                                    title={'Code vom Authentifikator'}
+                                    description={'Gib den Code von deinem Authentifizierungsgerät ein, nachdem du das QR-Bild gescannt hast.'}
                                 />
                                 {token &&
                                 <div css={tw`mt-4 pt-4 border-t border-neutral-500 text-neutral-200`}>
-                                    Alternatively, enter the following token into your authenticator application:
+                                    Gib alternativ das folgende Token in deine Authentifizierungsanwendung ein:
                                     <CopyOnClick text={token.secret}>
                                         <div css={tw`text-sm bg-neutral-900 rounded mt-2 py-2 px-4 font-mono`}>
                                             <code css={tw`font-mono`}>
@@ -140,7 +139,7 @@ const SetupTwoFactorModal = () => {
                                 }
                             </div>
                             <div css={tw`mt-6 md:mt-0 text-right`}>
-                                <Button>Setup</Button>
+                                <Button>Einrichten</Button>
                             </div>
                         </div>
                     </div>

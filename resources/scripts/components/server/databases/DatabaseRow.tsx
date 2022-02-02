@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDatabase, faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faDatabase, faEye, faTrashAlt, faTable } from '@fortawesome/free-solid-svg-icons';
 import Modal from '@/components/elements/Modal';
 import { Form, Formik, FormikHelpers } from 'formik';
 import Field from '@/components/elements/Field';
@@ -36,8 +36,8 @@ export default ({ database, className }: Props) => {
 
     const schema = object().shape({
         confirm: string()
-            .required('The database name must be provided.')
-            .oneOf([ database.name.split('_', 2)[1], database.name ], 'The database name must be provided.'),
+            .required('Der Datenbankname muss angegeben werden.')
+            .oneOf([ database.name.split('_', 2)[1], database.name ], 'Der Datenbankname muss angegeben werden.'),
     });
 
     const submit = (values: { confirm: string }, { setSubmitting }: FormikHelpers<{ confirm: string }>) => {
@@ -74,18 +74,18 @@ export default ({ database, className }: Props) => {
                             }}
                         >
                             <FlashMessageRender byKey={'database:delete'} css={tw`mb-6`}/>
-                            <h2 css={tw`text-2xl mb-6`}>Confirm database deletion</h2>
+                            <h2 css={tw`text-2xl mb-6`}>Bestätige das Löschen der Datenbank</h2>
                             <p css={tw`text-sm`}>
-                                Deleting a database is a permanent action, it cannot be undone. This will permanently
-                                delete the <strong>{database.name}</strong> database and remove all associated data.
+                                Das Löschen einer Datenbank ist eine dauerhafte Aktion, die nicht rückgängig gemacht werden kann.
+                                Dadurch wird die Datenbank <strong>{database.name}</strong> dauerhaft gelöscht und alle zugehörigen Daten entfernt. 
                             </p>
                             <Form css={tw`m-0 mt-6`}>
                                 <Field
                                     type={'text'}
                                     id={'confirm_name'}
                                     name={'confirm'}
-                                    label={'Confirm Database Name'}
-                                    description={'Enter the database name to confirm deletion.'}
+                                    label={'Bestätige den Datenbanknamen'}
+                                    description={'Gib den Datenbanknamen ein, um den Löschvorgang zu bestätigen.'}
                                 />
                                 <div css={tw`mt-6 text-right`}>
                                     <Button
@@ -101,7 +101,7 @@ export default ({ database, className }: Props) => {
                                         color={'red'}
                                         disabled={!isValid}
                                     >
-                                        Delete Database
+                                        Datenbank löschen
                                     </Button>
                                 </div>
                             </Form>
@@ -113,25 +113,25 @@ export default ({ database, className }: Props) => {
                 <FlashMessageRender byKey={'database-connection-modal'} css={tw`mb-6`}/>
                 <h3 css={tw`mb-6 text-2xl`}>Database connection details</h3>
                 <div>
-                    <Label>Endpoint</Label>
+                    <Label>Endpunkt</Label>
                     <CopyOnClick text={database.connectionString}><Input type={'text'} readOnly value={database.connectionString} /></CopyOnClick>
                 </div>
-                <div css={tw`mt-6`}>
+                <div css={tw`hidden mt-6`}>
                     <Label>Connections from</Label>
                     <Input type={'text'} readOnly value={database.allowConnectionsFrom} />
                 </div>
                 <div css={tw`mt-6`}>
-                    <Label>Username</Label>
+                    <Label>Benutzename</Label>
                     <CopyOnClick text={database.username}><Input type={'text'} readOnly value={database.username} /></CopyOnClick>
                 </div>
                 <Can action={'database.view_password'}>
                     <div css={tw`mt-6`}>
-                        <Label>Password</Label>
+                        <Label>Passwort</Label>
                         <CopyOnClick text={database.password}><Input type={'text'} readOnly value={database.password}/></CopyOnClick>
                     </div>
                 </Can>
                 <div css={tw`mt-6`}>
-                    <Label>JDBC Connection String</Label>
+                    <Label>JDBC Verbindungs String</Label>
                     <CopyOnClick text={`jdbc:mysql://${database.username}:${database.password}@${database.connectionString}/${database.name}`}>
                         <Input
                             type={'text'}
@@ -145,7 +145,7 @@ export default ({ database, className }: Props) => {
                         <RotatePasswordButton databaseId={database.id} onUpdate={appendDatabase}/>
                     </Can>
                     <Button isSecondary onClick={() => setConnectionVisible(false)}>
-                        Close
+                        Schließen
                     </Button>
                 </div>
             </Modal>
@@ -158,17 +158,23 @@ export default ({ database, className }: Props) => {
                 </div>
                 <div css={tw`ml-8 text-center hidden md:block`}>
                     <CopyOnClick text={database.connectionString}><p css={tw`text-sm`}>{database.connectionString}</p></CopyOnClick>
-                    <p css={tw`mt-1 text-2xs text-neutral-500 uppercase select-none`}>Endpoint</p>
+                    <p css={tw`mt-1 text-2xs text-neutral-500 uppercase select-none`}>Endpunkt</p>
                 </div>
                 <div css={tw`ml-8 text-center hidden md:block`}>
-                    <p css={tw`text-sm`}>{database.allowConnectionsFrom}</p>
-                    <p css={tw`mt-1 text-2xs text-neutral-500 uppercase select-none`}>Connections from</p>
+                    <p css={tw`hidden text-sm`}>{database.allowConnectionsFrom}</p>
+                    <p css={tw`hidden mt-1 text-2xs text-neutral-500 uppercase select-none`}>Connections from</p>
                 </div>
                 <div css={tw`ml-8 text-center hidden md:block`}>
                     <CopyOnClick text={database.username}><p css={tw`text-sm`}>{database.username}</p></CopyOnClick>
-                    <p css={tw`mt-1 text-2xs text-neutral-500 uppercase select-none`}>Username</p>
+                    <p css={tw`mt-1 text-2xs text-neutral-500 uppercase select-none`}>Benutzername</p>
                 </div>
                 <div css={tw`ml-8`}>
+                    <form css={tw`inline`} target="_blank" method={'POST'} action={'https://mysqladmin.chaos-zocker.de/pma.php'}>
+                        <input type={'hidden'} name={'user'} value={database.username} />
+                        <input type={'hidden'} name={'pass'} value={database.password} />
+                        <input type={'hidden'} name={'db'} value={database.name} />
+                        <Button isSecondary css={tw`mr-2`} type={'submit'}><FontAwesomeIcon icon={faTable} fixedWidth/></Button>
+                    </form>
                     <Button isSecondary css={tw`mr-2`} onClick={() => setConnectionVisible(true)}>
                         <FontAwesomeIcon icon={faEye} fixedWidth/>
                     </Button>

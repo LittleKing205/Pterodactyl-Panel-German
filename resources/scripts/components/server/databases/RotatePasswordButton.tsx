@@ -40,7 +40,7 @@ export default ({ databaseId, onUpdate }: {
 
     return (
         <Button isSecondary color={'primary'} css={tw`mr-2`} onClick={rotate} isLoading={loading}>
-            Rotate Password
+            Passwort austauschen
         </Button>
     );
 };

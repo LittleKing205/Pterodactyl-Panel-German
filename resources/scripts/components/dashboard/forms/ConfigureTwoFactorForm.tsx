@@ -20,14 +20,14 @@ export default () => {
             )}
             <p css={tw`text-sm`}>
                 {isEnabled ?
-                    'Two-factor authentication is currently enabled on your account.'
+                    'Die Zwei-Faktor-Authentifizierung ist derzeit für dein Konto aktiviert.'
                     :
-                    'You do not currently have two-factor authentication enabled on your account. Click the button below to begin configuring it.'
+                    'Du hast derzeit keine Zwei-Faktor-Authentifizierung für dein Konto aktiviert. Klicke auf die Schaltfläche unten, um mit der Konfiguration zu beginnen.'
                 }
             </p>
             <div css={tw`mt-6`}>
                 <Button color={'red'} isSecondary onClick={() => setVisible(true)}>
-                    {isEnabled ? 'Disable' : 'Enable'}
+                    {isEnabled ? 'Deaktivieren' : 'Aktivieren'}
                 </Button>
             </div>
         </div>

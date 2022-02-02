@@ -48,31 +48,30 @@ export default () => {
     };
 
     return (
-        <PageContentBlock title={'Account API'}>
+        <PageContentBlock title={'Konto API'}>
             <FlashMessageRender byKey={'account'}/>
             <div css={tw`md:flex flex-nowrap my-10`}>
-                <ContentBox title={'Create API Key'} css={tw`flex-none w-full md:w-1/2`}>
+                <ContentBox title={'Erstellung eines API Schlüssels'} css={tw`flex-none w-full md:w-1/2`}>
                     <CreateApiKeyForm onKeyCreated={key => setKeys(s => ([ ...s!, key ]))}/>
                 </ContentBox>
-                <ContentBox title={'API Keys'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
+                <ContentBox title={'API Schlüssel'} css={tw`flex-1 overflow-hidden mt-8 md:mt-0 md:ml-8`}>
                     <SpinnerOverlay visible={loading}/>
                     <ConfirmationModal
                         visible={!!deleteIdentifier}
-                        title={'Confirm key deletion'}
-                        buttonText={'Yes, delete key'}
+                        title={'Löschen des API Schlüssels bestätigen'}
+                        buttonText={'Ja, Schlüssel löschen'}
                         onConfirmed={() => {
                             doDeletion(deleteIdentifier);
                             setDeleteIdentifier('');
                         }}
                         onModalDismissed={() => setDeleteIdentifier('')}
                     >
-                        Are you sure you wish to delete this API key? All requests using it will immediately be
-                        invalidated and will fail.
+                        Möchtest du diesen API-Schlüssel wirklich löschen? Alle Anfragen, die es verwenden, werden sofort ungültig und schlagen fehl.
                     </ConfirmationModal>
                     {
                         keys.length === 0 ?
                             <p css={tw`text-center text-sm`}>
-                                {loading ? 'Loading...' : 'No API keys exist for this account.'}
+                                {loading ? 'Lädt...' : 'Es existieren keine API Schlüssel für dieses Konto'}
                             </p>
                             :
                             keys.map((key, index) => (

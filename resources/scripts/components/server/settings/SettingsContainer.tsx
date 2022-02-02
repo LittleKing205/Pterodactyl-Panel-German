@@ -13,7 +13,6 @@ import { LinkButton } from '@/components/elements/Button';
 import ServerContentBlock from '@/components/elements/ServerContentBlock';
 import isEqual from 'react-fast-compare';
 import CopyOnClick from '@/components/elements/CopyOnClick';
-import { formatIp } from '@/helpers';
 
 export default () => {
     const username = useStoreState(state => state.user.data!.username);
@@ -28,19 +27,19 @@ export default () => {
             <div css={tw`md:flex`}>
                 <div css={tw`w-full md:flex-1 md:mr-10`}>
                     <Can action={'file.sftp'}>
-                        <TitledGreyBox title={'SFTP Details'} css={tw`mb-6 md:mb-10`}>
+                        <TitledGreyBox title={'SFTP Verbindungs Informationen'} css={tw`mb-6 md:mb-10`}>
                             <div>
-                                <Label>Server Address</Label>
-                                <CopyOnClick text={`sftp://${formatIp(sftp.ip)}:${sftp.port}`}>
+                                <Label>Server Adresse</Label>
+                                <CopyOnClick text={`sftp://${sftp.ip}:${sftp.port}`}>
                                     <Input
                                         type={'text'}
-                                        value={`sftp://${formatIp(sftp.ip)}:${sftp.port}`}
+                                        value={`sftp://${sftp.ip}:${sftp.port}`}
                                         readOnly
                                     />
                                 </CopyOnClick>
                             </div>
                             <div css={tw`mt-6`}>
-                                <Label>Username</Label>
+                                <Label>Benutzername</Label>
                                 <CopyOnClick text={`${username}.${id}`}>
                                     <Input
                                         type={'text'}
@@ -53,14 +52,14 @@ export default () => {
                                 <div css={tw`flex-1`}>
                                     <div css={tw`border-l-4 border-cyan-500 p-3`}>
                                         <p css={tw`text-xs text-neutral-200`}>
-                                            Your SFTP password is the same as the password you use to access this panel.
+                                            Dein SFTP-Passwort ist dasselbe wie das Passwort, dass du für den Zugriff auf dieses Panel verwendest.
                                         </p>
                                     </div>
                                 </div>
                                 <div css={tw`ml-4`}>
                                     <LinkButton
                                         isSecondary
-                                        href={`sftp://${username}.${id}@${formatIp(sftp.ip)}:${sftp.port}`}
+                                        href={`sftp://${username}.${id}@${sftp.ip}:${sftp.port}`}
                                     >
                                         Launch SFTP
                                     </LinkButton>
@@ -68,7 +67,7 @@ export default () => {
                             </div>
                         </TitledGreyBox>
                     </Can>
-                    <TitledGreyBox title={'Debug Information'} css={tw`mb-6 md:mb-10`}>
+                    <TitledGreyBox title={'Debug Informationen'} css={tw`mb-6 md:mb-10`}>
                         <div css={tw`flex items-center justify-between text-sm`}>
                             <p>Node</p>
                             <code css={tw`font-mono bg-neutral-900 rounded py-1 px-2`}>{node}</code>

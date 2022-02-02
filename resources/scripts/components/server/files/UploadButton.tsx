@@ -94,7 +94,7 @@ export default ({ className }: WithClassname) => {
                     <div css={tw`w-full flex items-center justify-center`} style={{ pointerEvents: 'none' }}>
                         <InnerContainer>
                             <p css={tw`text-lg text-neutral-200 text-center`}>
-                                Drag and drop files to upload.
+                                Ziehe Dateien hier herein, um diese Hochzuladen.
                             </p>
                         </InnerContainer>
                     </div>
@@ -122,7 +122,7 @@ export default ({ className }: WithClassname) => {
                         : setVisible(true);
                 }}
             >
-                Upload
+                Hochladen
             </Button>
         </>
     );

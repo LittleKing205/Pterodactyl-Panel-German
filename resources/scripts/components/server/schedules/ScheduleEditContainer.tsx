@@ -36,7 +36,7 @@ const ActivePill = ({ active }: { active: boolean }) => (
             active ? tw`bg-green-600 text-green-100` : tw`bg-red-600 text-red-100`,
         ]}
     >
-        {active ? 'Active' : 'Inactive'}
+        {active ? 'Aktiv' : 'nicht Aktiv'}
     </span>
 );
 
@@ -75,7 +75,7 @@ export default () => {
     }, []);
 
     return (
-        <PageContentBlock title={'Schedules'}>
+        <PageContentBlock title={'Geplante Aufgaben'}>
             <FlashMessageRender byKey={'schedules'} css={tw`mb-4`}/>
             {!schedule || isLoading ?
                 <Spinner size={'large'} centered/>
@@ -124,7 +124,7 @@ export default () => {
                                         css={tw`flex-1 mr-4 border-transparent`}
                                         onClick={toggleEditModal}
                                     >
-                                        Edit
+                                        Bearbeiten
                                     </Button>
                                     <NewTaskButton schedule={schedule}/>
                                 </Can>
@@ -132,10 +132,10 @@ export default () => {
                         </div>
                         <div css={tw`hidden sm:grid grid-cols-5 md:grid-cols-5 gap-4 mb-4 mt-4`}>
                             <CronBox title={'Minute'} value={schedule.cron.minute}/>
-                            <CronBox title={'Hour'} value={schedule.cron.hour}/>
-                            <CronBox title={'Day (Month)'} value={schedule.cron.dayOfMonth}/>
-                            <CronBox title={'Month'} value={schedule.cron.month}/>
-                            <CronBox title={'Day (Week)'} value={schedule.cron.dayOfWeek}/>
+                            <CronBox title={'Stunde'} value={schedule.cron.hour}/>
+                            <CronBox title={'Tag (Monat)'} value={schedule.cron.dayOfMonth}/>
+                            <CronBox title={'Monat'} value={schedule.cron.month}/>
+                            <CronBox title={'Tag (Woche)'} value={schedule.cron.dayOfWeek}/>
                         </div>
                         <div css={tw`bg-neutral-700 rounded-b`}>
                             {schedule.tasks.length > 0 ?

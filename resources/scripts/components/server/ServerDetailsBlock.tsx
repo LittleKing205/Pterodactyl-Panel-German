@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import tw, { TwStyle } from 'twin.macro';
 import { faCircle, faEthernet, faHdd, faMemory, faMicrochip, faServer } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { bytesToHuman, megabytesToHuman, formatIp } from '@/helpers';
+import { bytesToHuman, megabytesToHuman } from '@/helpers';
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
 import { ServerContext } from '@/state/server';
 import CopyOnClick from '@/components/elements/CopyOnClick';
@@ -72,12 +72,12 @@ const ServerDetailsBlock = () => {
     const isTransferring = ServerContext.useStoreState(state => state.server.data!.isTransferring);
     const limits = ServerContext.useStoreState(state => state.server.data!.limits);
     const primaryAllocation = ServerContext.useStoreState(state => state.server.data!.allocations.filter(alloc => alloc.isDefault).map(
-        allocation => (allocation.alias || formatIp(allocation.ip)) + ':' + allocation.port,
+        allocation => (allocation.alias || allocation.ip) + ':' + allocation.port,
     )).toString();
 
-    const diskLimit = limits.disk ? megabytesToHuman(limits.disk) : 'Unlimited';
-    const memoryLimit = limits.memory ? megabytesToHuman(limits.memory) : 'Unlimited';
-    const cpuLimit = limits.cpu ? limits.cpu + '%' : 'Unlimited';
+    const diskLimit = limits.disk ? megabytesToHuman(limits.disk) : 'Unbegrentzt';
+    const memoryLimit = limits.memory ? megabytesToHuman(limits.memory) : 'Unbegrentzt';
+    const cpuLimit = limits.cpu ? limits.cpu + '%' : 'Unbegrentzt';
 
     return (
         <TitledGreyBox css={tw`break-words`} title={name} icon={faServer}>
@@ -90,7 +90,7 @@ const ServerDetailsBlock = () => {
                         statusToColor(status, isInstalling || isTransferring),
                     ]}
                 />
-                &nbsp;{!status ? 'Connecting...' : (isInstalling ? 'Installing' : (isTransferring) ? 'Transferring' : status)}
+                &nbsp;{!status ? 'Verbinde...' : (isInstalling ? 'Installiert' : (isTransferring) ? 'Transferring' : status)}
                 {stats.uptime > 0 &&
                 <span css={tw`ml-2 lowercase`}>
                     (<UptimeDuration uptime={stats.uptime / 1000}/>)

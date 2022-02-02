@@ -88,20 +88,20 @@ const EditSubuserModal = ({ subuser }: Props) => {
             } as Values}
             validationSchema={object().shape({
                 email: string()
-                    .max(191, 'Email addresses must not exceed 191 characters.')
-                    .email('A valid email address must be provided.')
-                    .required('A valid email address must be provided.'),
+                    .max(191, 'E-Mail-Adressen dürfen 191 Zeichen nicht überschreiten.')
+                    .email('Es muss eine gültige E-Mail-Adresse angegeben werden.')
+                    .required('Es muss eine gültige E-Mail-Adresse angegeben werden.'),
                 permissions: array().of(string()),
             })}
         >
             <Form>
                 <div css={tw`flex justify-between`}>
                     <h2 css={tw`text-2xl`} ref={ref}>
-                        {subuser ? `${canEditUser ? 'Modify' : 'View'} permissions for ${subuser.email}` : 'Create new subuser'}
+                        {subuser ? `Berechtigungen für ${subuser.email} ${canEditUser ? 'bearbeiten' : 'anzeigen'}` : 'Neunen Benutzer erstellen'}
                     </h2>
                     <div>
                         <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? 'Save' : 'Invite User'}
+                            {subuser ? 'Speichern' : 'Benutzer einladen'}
                         </Button>
                     </div>
                 </div>
@@ -109,8 +109,7 @@ const EditSubuserModal = ({ subuser }: Props) => {
                 {(!isRootAdmin && loggedInPermissions[0] !== '*') &&
                     <div css={tw`mt-4 pl-4 py-2 border-l-4 border-cyan-400`}>
                         <p css={tw`text-sm text-neutral-300`}>
-                            Only permissions which your account is currently assigned may be selected when creating or
-                            modifying other users.
+                            Beim Erstellen oder Ändern anderer Benutzer können nur Berechtigungen ausgewählt werden, die deinem Konto derzeit zugewiesen sind. 
                         </p>
                     </div>
                 }
@@ -118,8 +117,8 @@ const EditSubuserModal = ({ subuser }: Props) => {
                     <div css={tw`mt-6`}>
                         <Field
                             name={'email'}
-                            label={'User Email'}
-                            description={'Enter the email address of the user you wish to invite as a subuser for this server.'}
+                            label={'Benutzer E-Mail'}
+                            description={'Gib die E-Mail-Adresse des Benutzers ein, den du als Unterbenutzer für diesen Server einladen möchtest.'}
                         />
                     </div>
                 }
@@ -148,7 +147,7 @@ const EditSubuserModal = ({ subuser }: Props) => {
                 <Can action={subuser ? 'user.update' : 'user.create'}>
                     <div css={tw`pb-6 flex justify-end`}>
                         <Button type={'submit'} css={tw`w-full sm:w-auto`}>
-                            {subuser ? 'Save' : 'Invite User'}
+                            {subuser ? 'Speichern' : 'Benutzer einladen'}
                         </Button>
                     </div>
                 </Can>

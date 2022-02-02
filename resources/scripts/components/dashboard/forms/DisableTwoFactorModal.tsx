@@ -43,7 +43,7 @@ const DisableTwoFactorModal = () => {
                 password: '',
             }}
             validationSchema={object().shape({
-                password: string().required('You must provide your current password in order to continue.'),
+                password: string().required('Du musst dein aktuelles Passwort eingeben, um fortfahren zu können.'),
             })}
         >
             {({ isValid }) => (
@@ -53,13 +53,13 @@ const DisableTwoFactorModal = () => {
                         id={'password'}
                         name={'password'}
                         type={'password'}
-                        label={'Current Password'}
-                        description={'In order to disable two-factor authentication you will need to provide your account password.'}
+                        label={'Aktuelles Passwort'}
+                        description={'Um die Zwei-Faktor-Authentifizierung zu deaktivieren, müsst du dein Kontopasswort eingeben.'}
                         autoFocus
                     />
                     <div css={tw`mt-6 text-right`}>
                         <Button color={'red'} disabled={!isValid}>
-                            Disable Two-Factor
+                            Zwei-Faktor deaktivieren
                         </Button>
                     </div>
                 </Form>

@@ -66,19 +66,19 @@ export default () => {
             onSubmit={handleSubmission}
             initialValues={{ email: '' }}
             validationSchema={object().shape({
-                email: string().email('A valid email address must be provided to continue.')
-                    .required('A valid email address must be provided to continue.'),
+                email: string().email('Um fortzufahren, muss eine gültige E-Mail-Adresse angegeben werden.')
+                    .required('Um fortzufahren, muss eine gültige E-Mail-Adresse angegeben werden.'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
                 <LoginFormContainer
-                    title={'Request Password Reset'}
+                    title={'Passwort Vergessen'}
                     css={tw`w-full flex`}
                 >
                     <Field
                         light
                         label={'Email'}
-                        description={'Enter your account email address to receive instructions on resetting your password.'}
+                        description={'Gib die E-Mail-Adresse deines Kontos ein, um Anweisungen zum Zurücksetzen Ihres Passworts zu erhalten. '}
                         name={'email'}
                         type={'email'}
                     />
@@ -89,7 +89,7 @@ export default () => {
                             disabled={isSubmitting}
                             isLoading={isSubmitting}
                         >
-                            Send Email
+                            E-Mail senden
                         </Button>
                     </div>
                     {recaptchaEnabled &&
@@ -112,7 +112,7 @@ export default () => {
                             to={'/auth/login'}
                             css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
                         >
-                            Return to Login
+                            Zurück zum Login
                         </Link>
                     </div>
                 </LoginFormContainer>

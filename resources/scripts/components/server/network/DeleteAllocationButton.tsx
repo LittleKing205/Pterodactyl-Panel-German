@@ -35,12 +35,12 @@ const DeleteAllocationButton = ({ allocation }: Props) => {
         <>
             <ConfirmationModal
                 visible={confirm}
-                title={'Remove this allocation?'}
-                buttonText={'Delete'}
+                title={'Diese zuweisung löschen?'}
+                buttonText={'Löschen'}
                 onConfirmed={deleteAllocation}
                 onModalDismissed={() => setConfirm(false)}
             >
-                This allocation will be immediately removed from your server. Are you sure you want to continue?
+                Diese Zuordnung wird sofort von Ihrem Server entfernt. Bist du dir sicher, dass du fortfahren willst?
             </ConfirmationModal>
             <button
                 css={tw`text-neutral-400 px-2 py-1 mr-2 transition-colors duration-150 hover:text-red-400`}

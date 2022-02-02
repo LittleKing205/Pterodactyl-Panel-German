@@ -40,17 +40,16 @@ export default ({ scheduleId, onDeleted }: Props) => {
         <>
             <ConfirmationModal
                 visible={visible}
-                title={'Delete schedule?'}
-                buttonText={'Yes, delete schedule'}
+                title={'Zeitplan löschen?'}
+                buttonText={'Yep, Zeitplan löschen'}
                 onConfirmed={onDelete}
                 showSpinnerOverlay={isLoading}
                 onModalDismissed={() => setVisible(false)}
             >
-                Are you sure you want to delete this schedule? All tasks will be removed and any running processes
-                will be terminated.
+                Möchtest Du diesen Zeitplan wirklich löschen? Alle Aufgaben werden entfernt und alle laufenden Prozesse werden beendet. 
             </ConfirmationModal>
             <Button css={tw`flex-1 sm:flex-none mr-4 border-transparent`} color={'red'} isSecondary onClick={() => setVisible(true)}>
-                Delete
+                Löschen
             </Button>
         </>
     );

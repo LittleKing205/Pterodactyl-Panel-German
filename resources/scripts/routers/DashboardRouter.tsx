@@ -14,7 +14,7 @@ export default ({ location }: RouteComponentProps) => (
         {location.pathname.startsWith('/account') &&
         <SubNavigation>
             <div>
-                <NavLink to={'/account'} exact>Settings</NavLink>
+                <NavLink to={'/account'} exact>Einstellungen</NavLink>
                 <NavLink to={'/account/api'}>API Credentials</NavLink>
             </div>
         </SubNavigation>

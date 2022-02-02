@@ -45,9 +45,9 @@ const BackupContainer = () => {
                             :
                             <p css={tw`text-center text-sm text-neutral-300`}>
                                 {page > 1 ?
-                                    'Looks like we\'ve run out of backups to show you, try going back a page.'
+                                    'Sieht so aus, als hätten wir keine Backups mehr, um es Ihnen zu zeigen. Versuchen Sie, eine Seite zurückzugehen.'
                                     :
-                                    'It looks like there are no backups currently stored for this server.'
+                                    'Es sieht so aus, als ob für diesen Server keine Backups erstellt wurden.'
                                 }
                             </p>
                         :
@@ -60,14 +60,14 @@ const BackupContainer = () => {
             </Pagination>
             {backupLimit === 0 &&
             <p css={tw`text-center text-sm text-neutral-300`}>
-                Backups cannot be created for this server because the backup limit is set to 0.
+                Für diesen Server können keine Backups angelegt werden, da die Maximale anzahl für Backups auf 0 gesetzt wurde.
             </p>
             }
             <Can action={'backup.create'}>
                 <div css={tw`mt-6 sm:flex items-center justify-end`}>
                     {(backupLimit > 0 && backups.backupCount > 0) &&
                     <p css={tw`text-sm text-neutral-300 mb-4 sm:mr-6 sm:mb-0`}>
-                        {backups.backupCount} of {backupLimit} backups have been created for this server.
+                        {backups.backupCount} von {backupLimit} Backups wurden von diesem Server erstellt.
                     </p>
                     }
                     {backupLimit > 0 && backupLimit > backups.backupCount &&

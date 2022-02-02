@@ -87,10 +87,10 @@ export default ({ className }: WithClassname) => {
                                 autoFocus
                                 id={'directoryName'}
                                 name={'directoryName'}
-                                label={'Directory Name'}
+                                label={'Ordner Name'}
                             />
                             <p css={tw`text-xs mt-2 text-neutral-400 break-all`}>
-                                <span css={tw`text-neutral-200`}>This directory will be created as</span>
+                                <span css={tw`text-neutral-200`}>Der Ordner wird im folgenden Verzeichnis erstellt: </span>
                                 &nbsp;/home/container/
                                 <span css={tw`text-cyan-200`}>
                                     {join(directory, values.directoryName).replace(/^(\.\.\/|\/)+/, '')}
@@ -98,7 +98,7 @@ export default ({ className }: WithClassname) => {
                             </p>
                             <div css={tw`flex justify-end`}>
                                 <Button css={tw`mt-8`}>
-                                    Create Directory
+                                    Ordner erstellen
                                 </Button>
                             </div>
                         </Form>
@@ -106,7 +106,7 @@ export default ({ className }: WithClassname) => {
                 )}
             </Formik>
             <Button isSecondary onClick={() => setVisible(true)} className={className}>
-                Create Directory
+                Ordner erstellen
             </Button>
         </>
     );

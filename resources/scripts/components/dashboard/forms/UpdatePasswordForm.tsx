@@ -17,9 +17,9 @@ interface Values {
 }
 
 const schema = Yup.object().shape({
-    current: Yup.string().min(1).required('You must provide your current password.'),
+    current: Yup.string().min(1).required('Du musst dein aktuelles Passwort angeben.'),
     password: Yup.string().min(8).required(),
-    confirmPassword: Yup.string().test('password', 'Password confirmation does not match the password you entered.', function (value) {
+    confirmPassword: Yup.string().test('password', 'Die Passwortbestätigung stimmt nicht mit dem eingegebenen Passwort überein.', function (value) {
         return value === this.parent.password;
     }),
 });
@@ -64,15 +64,15 @@ export default () => {
                                     id={'current_password'}
                                     type={'password'}
                                     name={'current'}
-                                    label={'Current Password'}
+                                    label={'Aktuelles Passwort'}
                                 />
                                 <div css={tw`mt-6`}>
                                     <Field
                                         id={'new_password'}
                                         type={'password'}
                                         name={'password'}
-                                        label={'New Password'}
-                                        description={'Your new password should be at least 8 characters in length and unique to this website.'}
+                                        label={'Neues Passwort'}
+                                        description={'Dein neues Passwort sollte mindestens 8 Zeichen lang und für diese Website einzigartig sein.'}
                                     />
                                 </div>
                                 <div css={tw`mt-6`}>
@@ -80,12 +80,12 @@ export default () => {
                                         id={'confirm_new_password'}
                                         type={'password'}
                                         name={'confirmPassword'}
-                                        label={'Confirm New Password'}
+                                        label={'Neues Passwort bestätigen'}
                                     />
                                 </div>
                                 <div css={tw`mt-6`}>
                                     <Button size={'small'} disabled={isSubmitting || !isValid}>
-                                        Update Password
+                                        Passwort ändern
                                     </Button>
                                 </div>
                             </Form>

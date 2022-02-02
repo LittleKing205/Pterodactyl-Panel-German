@@ -32,7 +32,7 @@ export default () => {
             .then(() => addFlash({
                 type: 'success',
                 key: 'account:email',
-                message: 'Your primary email has been updated.',
+                message: 'Deine primäre E-Mail-Adresse wurde aktualisiert.',
             }))
             .catch(error => addFlash({
                 type: 'error',
@@ -61,19 +61,19 @@ export default () => {
                                 id={'current_email'}
                                 type={'email'}
                                 name={'email'}
-                                label={'Email'}
+                                label={'E-Mail'}
                             />
                             <div css={tw`mt-6`}>
                                 <Field
                                     id={'confirm_password'}
                                     type={'password'}
                                     name={'password'}
-                                    label={'Confirm Password'}
+                                    label={'Passwort bestätigen'}
                                 />
                             </div>
                             <div css={tw`mt-6`}>
                                 <Button size={'small'} disabled={isSubmitting || !isValid}>
-                                    Update Email
+                                    E-Mail ändern
                                 </Button>
                             </div>
                         </Form>

@@ -219,7 +219,7 @@ export default () => {
                     <div css={tw`w-full`}>
                         <CommandInput
                             type={'text'}
-                            placeholder={'Type a command...'}
+                            placeholder={'Befehl hier eingeben...'}
                             aria-label={'Console command input.'}
                             disabled={!instance || !connected}
                             onKeyDown={handleCommandKeyDown}

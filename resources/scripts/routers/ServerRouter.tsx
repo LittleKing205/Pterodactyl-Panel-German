@@ -39,9 +39,9 @@ const ConflictStateRenderer = () => {
     return (
         status === 'installing' || status === 'install_failed' ?
             <ScreenBlock
-                title={'Running Installer'}
+                title={'Installation läuft'}
                 image={ServerInstallSvg}
-                message={'Your server should be ready soon, please try again in a few minutes.'}
+                message={'Dein Server sollte bald bereit sein, bitte versuche es in ein paar Minuten erneut.'}
             />
             :
             status === 'suspended' ?
@@ -101,30 +101,30 @@ const ServerRouter = ({ match, location }: RouteComponentProps<{ id: string }>) 
                     <CSSTransition timeout={150} classNames={'fade'} appear in>
                         <SubNavigation>
                             <div>
-                                <NavLink to={`${match.url}`} exact>Console</NavLink>
+                                <NavLink to={`${match.url}`} exact>Konsole</NavLink>
                                 <Can action={'file.*'}>
-                                    <NavLink to={`${match.url}/files`}>File Manager</NavLink>
+                                    <NavLink to={`${match.url}/files`}>Datei Manager</NavLink>
                                 </Can>
                                 <Can action={'database.*'}>
-                                    <NavLink to={`${match.url}/databases`}>Databases</NavLink>
+                                    <NavLink to={`${match.url}/databases`}>Datenbanken</NavLink>
                                 </Can>
                                 <Can action={'schedule.*'}>
-                                    <NavLink to={`${match.url}/schedules`}>Schedules</NavLink>
+                                    <NavLink to={`${match.url}/schedules`}>Geplante Aufgaben</NavLink>
                                 </Can>
                                 <Can action={'user.*'}>
-                                    <NavLink to={`${match.url}/users`}>Users</NavLink>
+                                    <NavLink to={`${match.url}/users`}>Benutzer</NavLink>
                                 </Can>
                                 <Can action={'backup.*'}>
                                     <NavLink to={`${match.url}/backups`}>Backups</NavLink>
                                 </Can>
                                 <Can action={'allocation.*'}>
-                                    <NavLink to={`${match.url}/network`}>Network</NavLink>
+                                    <NavLink to={`${match.url}/network`}>Netzwerk</NavLink>
                                 </Can>
                                 <Can action={'startup.*'}>
-                                    <NavLink to={`${match.url}/startup`}>Startup</NavLink>
+                                    <NavLink to={`${match.url}/startup`}>Start Einstellungen</NavLink>
                                 </Can>
                                 <Can action={[ 'settings.*', 'file.sftp' ]} matchAny>
-                                    <NavLink to={`${match.url}/settings`}>Settings</NavLink>
+                                    <NavLink to={`${match.url}/settings`}>Einstellungen</NavLink>
                                 </Can>
                                 {rootAdmin &&
                                 <a href={'/admin/servers/view/' + serverId} rel="noreferrer" target={'_blank'}>

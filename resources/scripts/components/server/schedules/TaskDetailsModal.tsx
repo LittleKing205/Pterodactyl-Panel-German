@@ -36,14 +36,14 @@ const schema = object().shape({
     action: string().required().oneOf([ 'command', 'power', 'backup' ]),
     payload: string().when('action', {
         is: v => v !== 'backup',
-        then: string().required('A task payload must be provided.'),
+        then: string().required('Es muss ein Befhel eingegeben werden.'),
         otherwise: string(),
     }),
     continueOnFailure: boolean(),
-    timeOffset: number().typeError('The time offset must be a valid number between 0 and 900.')
-        .required('A time offset value must be provided.')
-        .min(0, 'The time offset must be at least 0 seconds.')
-        .max(900, 'The time offset must be less than 900 seconds.'),
+    timeOffset: number().typeError('Der Zeitversatz muss eine gültige Zahl zwischen 0 und 900 sein. ')
+        .required('Es muss ein Zeitversatzwert angegeben werden.')
+        .min(0, 'Der Zeitversatz muss mindestens 0 Sekunden betragen.')
+        .max(900, 'Der Zeitversatz muss kleiner als 900 Sekunden sein.'),
 });
 
 const ActionListener = () => {
@@ -81,7 +81,7 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
         clearFlashes('schedule:task');
         if (backupLimit === 0 && values.action === 'backup') {
             setSubmitting(false);
-            addError({ message: 'A backup task cannot be created when the server\'s backup limit is set to 0.', key: 'schedule:task' });
+            addError({ message: 'Eine Backupaufgabe kann nicht erstellt werden, wenn das Backuplimit des Servers auf 0 gesetzt ist. ', key: 'schedule:task' });
         } else {
             createOrUpdateScheduleTask(uuid, schedule.id, task?.id, values)
                 .then(task => {
@@ -115,31 +115,31 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
             {({ isSubmitting, values }) => (
                 <Form css={tw`m-0`}>
                     <FlashMessageRender byKey={'schedule:task'} css={tw`mb-4`}/>
-                    <h2 css={tw`text-2xl mb-6`}>{task ? 'Edit Task' : 'Create Task'}</h2>
+                    <h2 css={tw`text-2xl mb-6`}>{task ? 'Aufgabe bearbeiten' : 'Aufgabe erstellen'}</h2>
                     <div css={tw`flex`}>
                         <div css={tw`mr-2 w-1/3`}>
                             <Label>Action</Label>
                             <ActionListener/>
                             <FormikFieldWrapper name={'action'}>
                                 <FormikField as={Select} name={'action'}>
-                                    <option value={'command'}>Send command</option>
-                                    <option value={'power'}>Send power action</option>
-                                    <option value={'backup'}>Create backup</option>
+                                    <option value={'command'}>Befehl senden</option>
+                                    <option value={'power'}>Sende Power zustand</option>
+                                    <option value={'backup'}>Backup erstellen</option>
                                 </FormikField>
                             </FormikFieldWrapper>
                         </div>
                         <div css={tw`flex-1 ml-6`}>
                             <Field
                                 name={'timeOffset'}
-                                label={'Time offset (in seconds)'}
-                                description={'The amount of time to wait after the previous task executes before running this one. If this is the first task on a schedule this will not be applied.'}
+                                label={'Zeitversatz (in Sekunden)'}
+                                description={'Die Wartezeit nach der Ausführung der vorherigen Aufgabe, bevor diese ausgeführt wird. Wenn dies die erste Aufgabe in einem Zeitplan ist, wird dies nicht angewendet.'}
                             />
                         </div>
                     </div>
                     <div css={tw`mt-6`}>
                         {values.action === 'command' ?
                             <div>
-                                <Label>Payload</Label>
+                                <Label>Befehl</Label>
                                 <FormikFieldWrapper name={'payload'}>
                                     <FormikField as={Textarea} name={'payload'} rows={6}/>
                                 </FormikFieldWrapper>
@@ -147,22 +147,22 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
                             :
                             values.action === 'power' ?
                                 <div>
-                                    <Label>Payload</Label>
+                                    <Label>Befehl</Label>
                                     <FormikFieldWrapper name={'payload'}>
                                         <FormikField as={Select} name={'payload'}>
-                                            <option value={'start'}>Start the server</option>
-                                            <option value={'restart'}>Restart the server</option>
-                                            <option value={'stop'}>Stop the server</option>
-                                            <option value={'kill'}>Terminate the server</option>
+                                            <option value={'start'}>Server starten</option>
+                                            <option value={'restart'}>Server neustarten</option>
+                                            <option value={'stop'}>Server Stoppen</option>
+                                            <option value={'kill'}>Server killen</option>
                                         </FormikField>
                                     </FormikFieldWrapper>
                                 </div>
                                 :
                                 <div>
-                                    <Label>Ignored Files</Label>
+                                    <Label>Ignorierte Dateien</Label>
                                     <FormikFieldWrapper
                                         name={'payload'}
-                                        description={'Optional. Include the files and folders to be excluded in this backup. By default, the contents of your .pteroignore file will be used. If you have reached your backup limit, the oldest backup will be rotated.'}
+                                        description={'Optional. Trage hier die Dateien und Ordner ein, die nicht im Backp mit eingeschlossen werden sollen. Standardmäßig wird der Inhalt Ihrer .pteroignore-Datei verwendet. Wenn Dein Backup-Limit erreicht wurde, wird das älteste Backup rotiert.'}
                                     >
                                         <FormikField as={Textarea} name={'payload'} rows={6}/>
                                     </FormikFieldWrapper>
@@ -172,13 +172,13 @@ const TaskDetailsModal = ({ schedule, task }: Props) => {
                     <div css={tw`mt-6 bg-neutral-700 border border-neutral-800 shadow-inner p-4 rounded`}>
                         <FormikSwitch
                             name={'continueOnFailure'}
-                            description={'Future tasks will be run when this task fails.'}
-                            label={'Continue on Failure'}
+                            description={'Zukünftige Aufgaben werden ausgeführt, wenn diese Aufgabe fehlschlägt.'}
+                            label={'Weiter bei Fehler'}
                         />
                     </div>
                     <div css={tw`flex justify-end mt-6`}>
                         <Button type={'submit'} disabled={isSubmitting}>
-                            {task ? 'Save Changes' : 'Create Task'}
+                            {task ? 'Änderungen speichern' : 'Aufgabe erstellen'}
                         </Button>
                     </div>
                 </Form>

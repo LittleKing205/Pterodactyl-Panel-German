@@ -31,7 +31,7 @@ const RenameServerBox = () => {
                 />
                 <div css={tw`mt-6 text-right`}>
                     <Button type={'submit'}>
-                        Save
+                        Speichern
                     </Button>
                 </div>
             </Form>

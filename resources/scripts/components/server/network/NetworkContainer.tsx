@@ -70,12 +70,11 @@ const NetworkContainer = () => {
                         <SpinnerOverlay visible={loading}/>
                         <div css={tw`mt-6 sm:flex items-center justify-end`}>
                             <p css={tw`text-sm text-neutral-300 mb-4 sm:mr-6 sm:mb-0`}>
-                                You are currently using {data.length} of {allocationLimit} allowed allocations for this
-                                server.
+                                Du verwendeest derzeit {data.length} von {allocationLimit} zulässigen Zuordnungen für diesen Server.
                             </p>
                             {allocationLimit > data.length &&
                             <Button css={tw`w-full sm:w-auto`} color={'primary'} onClick={onCreateAllocation}>
-                                Create Allocation
+                                Zuordnung erstellen
                             </Button>
                             }
                         </div>

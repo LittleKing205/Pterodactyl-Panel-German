@@ -30,24 +30,24 @@ export default () => {
     const { state } = useLocation<undefined | { twoFactorRedirect?: boolean }>();
 
     return (
-        <PageContentBlock title={'Account Overview'}>
+        <PageContentBlock title={'Account Übersicht'}>
             {state?.twoFactorRedirect &&
             <MessageBox title={'2-Factor Required'} type={'error'}>
-                Your account must have two-factor authentication enabled in order to continue.
+                Für Dein Konto muss die Zwei-Faktor-Authentifizierung aktiviert sein, um fortfahren zu können.
             </MessageBox>
             }
             <Container css={[ tw`mb-10`, state?.twoFactorRedirect ? tw`mt-4` : tw`mt-10` ]}>
-                <ContentBox title={'Update Password'} showFlashes={'account:password'}>
+                <ContentBox title={'Passwort ändern'} showFlashes={'account:password'}>
                     <UpdatePasswordForm/>
                 </ContentBox>
                 <ContentBox
                     css={tw`mt-8 md:mt-0 md:ml-8`}
-                    title={'Update Email Address'}
+                    title={'E-Mail Adresse aktualisieren'}
                     showFlashes={'account:email'}
                 >
                     <UpdateEmailAddressForm/>
                 </ContentBox>
-                <ContentBox css={tw`lg:ml-8 mt-8 lg:mt-0`} title={'Configure Two Factor'}>
+                <ContentBox css={tw`xl:ml-8 mt-8 xl:mt-0`} title={'Zwei Faktor konfigurieren'}>
                     <ConfigureTwoFactorForm/>
                 </ContentBox>
             </Container>

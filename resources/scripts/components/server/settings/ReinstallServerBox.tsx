@@ -44,22 +44,19 @@ export default () => {
     return (
         <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
             <ConfirmationModal
-                title={'Confirm server reinstallation'}
-                buttonText={'Yes, reinstall server'}
+                title={'Bestätige Server neuinstallation'}
+                buttonText={'Ja, Server neuinstallieren'}
                 onConfirmed={reinstall}
                 showSpinnerOverlay={isSubmitting}
                 visible={modalVisible}
                 onModalDismissed={() => setModalVisible(false)}
             >
-                Your server will be stopped and some files may be deleted or modified during this process, are you sure
-                you wish to continue?
+                Dein Server wird angehalten und einige Dateien können während dieses Vorgangs gelöscht oder geändert werden. Möchtest Du wirklich fortfahren?
             </ConfirmationModal>
             <p css={tw`text-sm`}>
-                Reinstalling your server will stop it, and then re-run the installation script that initially
-                set it up.&nbsp;
+                Die Neuinstallation Deines Servers stoppt ihn und führt dann das Installationsskript erneut aus, das ihn ursprünglich eingerichtet hat.&nbsp;
                 <strong css={tw`font-medium`}>
-                    Some files may be deleted or modified during this process, please back up your data before
-                    continuing.
+                    Einige Dateien können während dieses Vorgangs gelöscht oder geändert werden, bitte sichere Deine Daten, bevor du fortfährst.
                 </strong>
             </p>
             <div css={tw`mt-6 text-right`}>
@@ -69,7 +66,7 @@ export default () => {
                     isSecondary
                     onClick={() => setModalVisible(true)}
                 >
-                    Reinstall Server
+                    Server Neuinstallieren
                 </Button>
             </div>
         </TitledGreyBox>
