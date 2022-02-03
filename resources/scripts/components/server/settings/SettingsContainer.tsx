@@ -61,7 +61,7 @@ export default () => {
                                         isSecondary
                                         href={`sftp://${username}.${id}@${sftp.ip}:${sftp.port}`}
                                     >
-                                        Launch SFTP
+                                        Starte SFTP
                                     </LinkButton>
                                 </div>
                             </div>

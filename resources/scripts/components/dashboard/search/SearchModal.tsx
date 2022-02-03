@@ -87,7 +87,7 @@ export default ({ ...props }: Props) => {
                         <FormikFieldWrapper
                             name={'term'}
                             label={'Suche'}
-                            description={'Enter a server name, uuid, or allocation to begin searching.'}
+                            description={'Gib hier ein Servernamen, eine UUID oder eine Zuweisung (Adresse:Port) ein, nach der gesucht werden soll.'}
                         >
                             <SearchWatcher/>
                             <InputSpinner visible={isSubmitting}>

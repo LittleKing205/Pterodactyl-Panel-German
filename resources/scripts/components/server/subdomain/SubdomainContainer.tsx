@@ -116,7 +116,7 @@ export default () => {
                                                     </div>
                                                     <div css={tw`flex justify-end`}>
                                                         <Button type={'submit'} disabled={isSubmit}>
-                                                            Create
+                                                            Erstellen
                                                         </Button>
                                                     </div>
                                                 </Form>
@@ -126,7 +126,7 @@ export default () => {
 
                                     {data.subdomains.length < 1 ?
                                         <p css={tw`text-center text-sm text-neutral-400 pt-4 pb-4`}>
-                                            There are no subdomains for this server.
+                                            Es existieren keine Subdomains für diesen Server.
                                         </p>
                                         :
                                         (data.subdomains.map((item, key) => (
@@ -141,7 +141,7 @@ export default () => {
                                                     </div>
                                                     <div css={tw`w-16 md:w-64 overflow-hidden`}>
                                                         <Code>{data.ipAlias}:{item.port}</Code>
-                                                        <Label>Server Allocation</Label>
+                                                        <Label>Server zuweisung</Label>
                                                     </div>
                                                 </div>
                                                 <div css={tw`w-full md:flex-none md:w-40 md:text-center mt-4 md:mt-0 text-right ml-4`}>
@@ -152,17 +152,18 @@ export default () => {
                                     }
                                 </div>
                                 <div css={tw`w-full lg:w-4/12 lg:pl-4`}>
-                                    <TitledGreyBox title={'Subdomain Help'}>
+                                    <TitledGreyBox title={'Subdomain Hilfe'}>
                                         <div css={tw`px-1 py-2`}>
-                                            You can create Subdomain for your server. For
-                                            example: <code>myserver.example.com</code> or <code>myserver.example.com:25565</code>
+                                            Hier kannst du Subdomains für deinen Server einrichten.
+                                            So kannst du dich auf deinen Server einfacher verbinden.<br />
+                                            Beispiel: <code>meinserver.example.de</code> anstatt <code>example.de:35643</code>
                                         </div>
                                     </TitledGreyBox>
                                 </div>
                             </>
                         ) : (
                             <MessageBox type="info" title="Info">
-                                There are no available domain to current server.
+                                Es existieren keine Domains für deinen Server
                             </MessageBox>
                         )}
                     </>

@@ -42,7 +42,7 @@ export default () => {
     }, []);
 
     return (
-        <TitledGreyBox title={'Reinstall Server'} css={tw`relative`}>
+        <TitledGreyBox title={'Server neuinstallieren'} css={tw`relative`}>
             <ConfirmationModal
                 title={'Bestätige Server neuinstallation'}
                 buttonText={'Ja, Server neuinstallieren'}

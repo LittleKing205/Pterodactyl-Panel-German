@@ -77,7 +77,7 @@ const StartupContainer = () => {
                     onRetry={() => mutate()}
                 />
             :
-            <ServerContentBlock title={'Startup Settings'} showFlashKey={'startup:image'}>
+            <ServerContentBlock title={'Start Einstellungen'} showFlashKey={'startup:image'}>
                 <div css={tw`md:flex`}>
                     <TitledGreyBox title={'Startbefehl'} css={tw`flex-1`}>
                         <div css={tw`px-1 py-2`}>

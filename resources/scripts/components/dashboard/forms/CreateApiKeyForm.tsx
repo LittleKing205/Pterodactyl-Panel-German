@@ -61,8 +61,8 @@ export default ({ onKeyCreated }: { onKeyCreated: (key: ApiKey) => void }) => {
                     <Form>
                         <SpinnerOverlay visible={isSubmitting}/>
                         <FormikFieldWrapper
-                            label={'Description'}
-                            name={'Beschreibung'}
+                            label={'Beschreibung'}
+                            name={'description'}
                             description={'Eine beschreibung, wofür dieser API Schlüssel verwendet wird.'}
                             css={tw`mb-6`}
                         >

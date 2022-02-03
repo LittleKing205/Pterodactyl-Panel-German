@@ -20,7 +20,7 @@ const RenameServerBox = () => {
     const { isSubmitting } = useFormikContext<Values>();
 
     return (
-        <TitledGreyBox title={'Change Server Name'} css={tw`relative`}>
+        <TitledGreyBox title={'Servername ändern'} css={tw`relative`}>
             <SpinnerOverlay visible={isSubmitting}/>
             <Form css={tw`mb-0`}>
                 <Field

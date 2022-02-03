@@ -15,7 +15,7 @@ export default ({ location }: RouteComponentProps) => (
         <SubNavigation>
             <div>
                 <NavLink to={'/account'} exact>Einstellungen</NavLink>
-                <NavLink to={'/account/api'}>API Credentials</NavLink>
+                <NavLink to={'/account/api'}>API Schlüssel</NavLink>
             </div>
         </SubNavigation>
         }

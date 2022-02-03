@@ -42,16 +42,16 @@ export default ({ subdomainId, onDeleted }: Props) => {
         <>
             <ConfirmationModal
                 visible={visible}
-                title={'Delete subdomain?'}
-                buttonText={'Yes, delete subdomain'}
+                title={'Subdomain löschen?'}
+                buttonText={'Ja, Subdomain löschen'}
                 onConfirmed={onDelete}
                 showSpinnerOverlay={isLoading}
                 onModalDismissed={() => setVisible(false)}
             >
-                Are you sure you want to delete this subdomain?
+                Bist du dir sicher, dass diese Subdomain gelöscht werden soll?
             </ConfirmationModal>
             <Button color={'red'} size={'xsmall'} isSecondary onClick={() => setVisible(true)}>
-                Delete
+                Löschen
             </Button>
         </>
     );
