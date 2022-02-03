@@ -3,6 +3,10 @@ This file is a running track of new features and fixes to each version of the pa
 
 This project follows [Semantic Versioning](http://semver.org) guidelines.
 
+## Unreleased
+### Added
+* Adds an alternate way to login users via SSO token table.
+
 ## v1.7.0
 ### Fixed
 * Fixes typo in message shown to user when deleting a database.
