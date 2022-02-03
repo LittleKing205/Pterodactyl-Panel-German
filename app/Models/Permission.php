@@ -193,6 +193,19 @@ class Permission extends Model
                 'view_password' => 'Ermöglicht einem Benutzer, das einer Datenbankinstanz für diesen Server zugeordnete Kennwort anzuzeigen.',
             ],
         ],
+        
+        'players' => [
+            'description' => 'Permissions that control a user\'s ability to view or manage players list/counter',
+            'keys' => [
+                'view' => 'Allow a user to view all players from the server',
+                'kick' => 'Allow a user to kick players from the server',
+                'ban' => 'Allow a user to ban players from the server',
+                'unban' => 'Allow a user to unban players from the server',
+                'op' => 'Allow a user to op players from the server',
+                'deop' => 'Allow a user to deop players from the server',
+            ],
+        ],
+            
 
         'subdomain' => [
             'description' => 'Subdomain verwalten',

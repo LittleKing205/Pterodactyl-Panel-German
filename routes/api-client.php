@@ -124,4 +124,8 @@ Route::group(['prefix' => '/servers/{server}', 'middleware' => [AuthenticateServ
         Route::post('/create', 'Servers\SubdomainController@create');
         Route::delete('/delete/{id}', 'Servers\SubdomainController@delete');
     });
+    
+    Route::group(['prefix' => '/players'], function() {
+        Route::get('/', 'Servers\PlayersController@index');
+    }); 
 });

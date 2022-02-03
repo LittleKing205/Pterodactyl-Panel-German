@@ -17,6 +17,7 @@
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
         "ext-zip": "*",
+        "austinb/gameq": "^3.0",
         "aws/aws-sdk-php": "^3.171",
         "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.4",
@@ -36,11 +37,14 @@
         "prologue/alerts": "^0.4",
         "psr/cache": "1.0.1",
         "s1lentium/iptools": "^1.1",
+        "scai/php-rust-rcon": "^1.0",
         "spatie/laravel-fractal": "^5.8",
         "spatie/laravel-query-builder": "^3.3",
         "staudenmeir/belongs-to-through": "^2.11",
         "symfony/yaml": "^4.4",
-        "webmozart/assert": "^1.9"
+        "webmozart/assert": "^1.9",
+        "xpaw/php-minecraft-query": "^4.0",
+        "xpaw/php-source-query-class": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

@@ -9,6 +9,7 @@ import { ServerContext } from '@/state/server';
 import DatabasesContainer from '@/components/server/databases/DatabasesContainer';
 import FileManagerContainer from '@/components/server/files/FileManagerContainer';
 import { CSSTransition } from 'react-transition-group';
+import PlayersContainer from '@/components/server/players/PlayersContainer';
 import FileEditContainer from '@/components/server/files/FileEditContainer';
 import SettingsContainer from '@/components/server/settings/SettingsContainer';
 import ScheduleContainer from '@/components/server/schedules/ScheduleContainer';
@@ -148,6 +149,11 @@ const ServerRouter = ({ match, location }: RouteComponentProps<{ id: string }>) 
                             <TransitionRouter>
                                 <Switch location={location}>
                                     <Route path={`${match.path}`} component={ServerConsole} exact/>
+                                    <Route path={`${match.path}/players`} exact>
+                                        <RequireServerPermission permissions={`players.*`}>
+                                            <PlayersContainer />
+                                        </RequireServerPermission>
+                                    </Route>
                                     <Route path={`${match.path}/files`} exact>
                                         <RequireServerPermission permissions={'file.*'}>
                                             <FileManagerContainer/>
