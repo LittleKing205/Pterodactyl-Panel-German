@@ -3,6 +3,7 @@
 namespace Pterodactyl\Http;
 
 use Pterodactyl\Models\ApiKey;
+use Pterodactyl\Http\Middleware\SSO;
 use Illuminate\Auth\Middleware\Authorize;
 use Illuminate\Auth\Middleware\Authenticate;
 use Pterodactyl\Http\Middleware\TrimStrings;
@@ -60,6 +61,7 @@ class Kernel extends HttpKernel
         'web' => [
             AddQueuedCookiesToResponse::class,
             StartSession::class,
+            SSO::class,
             AuthenticateSession::class,
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
