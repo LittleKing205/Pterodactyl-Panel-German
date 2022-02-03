@@ -3,15 +3,6 @@ This file is a running track of new features and fixes to each version of the pa
 
 This project follows [Semantic Versioning](http://semver.org) guidelines.
 
-## v1.7.1
-### Changed
-* Admins can now see into suspended Servers.
-* 90% from client Site was translated in German.
-
-### Removed
-* Removed Docker creation on Release. 
-
-
 ## v1.7.0
 ### Fixed
 * Fixes typo in message shown to user when deleting a database.
@@ -26,6 +17,8 @@ This project follows [Semantic Versioning](http://semver.org) guidelines.
 
 ### Changed
 * CPU graph changed to show the maximum amount of CPU available to a server to better match how the memory graph is displayed.
+* Admins can now see into suspended Servers.
+* Client side was ranslated in german.
 
 ### Added
 * Adds support for `DB_PORT` environment variable in the Docker enterpoint for the Panel image.
@@ -36,6 +29,7 @@ This project follows [Semantic Versioning](http://semver.org) guidelines.
 * Adds support for displaying certain server variable fields as a checkbox when they're detected as using `boolean` or `in:0,1` validation rules.
 * Adds support for Pug and Jade in the file editor.
 * Adds an entry to the `robots.txt` file to correctly disallow all bot indexing.
+* Adds playermanagement on supportet eggs.
 
 
 ## v1.6.6
