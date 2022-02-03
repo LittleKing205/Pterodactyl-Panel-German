@@ -8,6 +8,9 @@ return [
         '3',
         '4',
         '5',
+        '16',
+        '21',
+
     ],
         
     //! SOURCE Category
@@ -18,7 +21,6 @@ return [
         '9',
         '10',
         '11',
-        '16',
     ],
     
     //! RUST Category
@@ -40,30 +42,25 @@ return [
             'queryPort' => 10011,
         ],
 
-        //! MTA - Egg Id
-        '17' => [
-            'name' => 'mta',
-        ],
-
         //! FiveM - Egg Id
-        '18' => [
+        '15' => [
             'name' => 'gta5m',
         ],
 
         //! ARK Survival Evolved
-        '19' => [
+        '6' => [
             'name' => 'arkse',
             'queryPort' => 27019
         ],
 
-        //! Battlefield 3
-        '20' => [
-            'name' => 'bf3',
-        ],
-
         //! MinecraftPE
-        '21' => [
+        '29' => [
             'name' => 'minecraftpe',
         ],
+
+        //! ECO
+        '23' => [
+            'name' => 'eco',
+        ]
     ],
 ];

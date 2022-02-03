@@ -7,6 +7,7 @@ import { ServerContext } from '@/state/server';
 //! Components
 import TitledGreyBox from '@/components/elements/TitledGreyBox';
 import { LinkButton } from '@/components/elements/Button';
+import Can from '@/components/elements/Can';
 
 //! Icons
 import { faCircle, faUsers, faMap, faInfoCircle, faServer, faCodeBranch, faBug, faFire, faStopwatch } from '@fortawesome/free-solid-svg-icons';
@@ -98,15 +99,17 @@ const ServerInformation = () => {
                             {data.info.version}
                         </p>
                     )}
-                    <div css={tw`p-2 flex text-xs mt-4 justify-center`}>
-                        <LinkButton
-                            isSecondary
-                            size={'xsmall'}
-                            href={`${match.url}/players`}
-                        >
-                            Spielerverwaltung
-                        </LinkButton>
-                    </div>
+                    <Can action={'players.*'}>
+                        <div css={tw`p-2 flex text-xs mt-4 justify-center`}>
+                            <LinkButton
+                                isSecondary
+                                size={'xsmall'}
+                                href={`${match.url}/players`}
+                            >
+                                Zur Spielerverwaltung
+                            </LinkButton>
+                        </div>
+                    </Can>
                 </>
             </TitledGreyBox>
         ) : (<></>)} </>

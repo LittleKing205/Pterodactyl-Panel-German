@@ -103,7 +103,7 @@ export default () => {
                     {!data.error ? (
                         <>
                             <Button onClick={() => mutate()} size="small" css={tw`w-full mt-4 sm:w-auto sm:mt-0`}>
-                                Refresh
+                                Neu laden
                             </Button>
                             <p css={tw`text-sm text-neutral-400 mt-2 mb-4`}>
                                 Zur zeit sind {data.online_players} von {data.max_players} Spielern Online.
@@ -112,7 +112,7 @@ export default () => {
                             <div css={tw`md:flex`}>
 
                                 <div css={tw`flex-1`}>
-                                    <p css={tw`text-sm text-neutral-400 mt-2 mb-4`}>Players List</p>
+                                    <p css={tw`text-sm text-neutral-400 mt-2 mb-4`}>Online Liste</p>
                                     {data.players.length > 0 ?
                                         data.players.map((player, index) => {
                                             const admin = data.info.ops?.find((client) => client.name === player.name) ? true : false;
@@ -144,7 +144,7 @@ export default () => {
                                         </div>
 
                                         <div css={tw`flex-1 lg:flex-none lg:w-full mt-8 md:mt-0 md:ml-10`}>
-                                            <p css={tw`text-sm text-neutral-400 mt-4 mb-4`}>Operators</p>
+                                            <p css={tw`text-sm text-neutral-400 mt-4 mb-4`}>Administratoren / OP's</p>
                                             {data.info.ops?.map((admin) => (
                                                 <PlayersOperatorsRow uuid={uuid} ops={admin} refresh={mutate} />
                                             ))}
