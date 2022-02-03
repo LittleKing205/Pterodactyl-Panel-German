@@ -11,6 +11,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 class UpgradeCommand extends Command
 {
     protected const DEFAULT_URL = 'https://github.com/LittleKing205/panel/releases/%s/panel.tar.gz';
+    protected const VENDOR_URL = 'https://github.com/LittleKing205/panel/releases/%s/vendor.tar.gz';
 
     /** @var string */
     protected $signature = 'p:upgrade
@@ -92,7 +93,7 @@ class UpgradeCommand extends Command
         }
 
         ini_set('output_buffering', 0);
-        $bar = $this->output->createProgressBar($skipDownload ? 9 : 10);
+        $bar = $this->output->createProgressBar($skipDownload ? 11 : 13);
         $bar->start();
 
         if (!$skipDownload) {
@@ -117,6 +118,14 @@ class UpgradeCommand extends Command
                 $this->{$type === Process::ERR ? 'error' : 'line'}($buffer);
             });
         });
+        
+        $this->withProgress($bar, function () {
+            $this->line('$upgrader> composer remove cloudflare/sdk');
+            $process = new Process(['composer', 'remove', 'cloudflare/sdk']);
+            $process->run(function ($type, $buffer) {
+                $this->{$type === Process::ERR ? 'error' : 'line'}($buffer);
+            });
+        });
 
         $this->withProgress($bar, function () {
             $command = ['composer', 'install', '--no-ansi'];
@@ -132,6 +141,24 @@ class UpgradeCommand extends Command
                 $this->line($buffer);
             });
         });
+
+        $this->withProgress($bar, function () {
+            $this->line('$upgrader> composer require cloudflare/sdk:dev-master');
+            $process = new Process(['composer', 'require', 'cloudflare/sdk:dev-master']);
+            $process->run(function ($type, $buffer) {
+                $this->{$type === Process::ERR ? 'error' : 'line'}($buffer);
+            });
+        });
+
+        if (!$skipDownload) {
+            $this->withProgress($bar, function () {
+                $this->line("\$upgrader> curl -L \"{$this->getVendorUrl()}\" | tar -xzv");
+                $process = Process::fromShellCommandline("curl -L \"{$this->getVendorUrl()}\" | tar -xzv");
+                $process->run(function ($type, $buffer) {
+                    $this->{$type === Process::ERR ? 'error' : 'line'}($buffer);
+                });
+            });
+        }
 
         /** @var \Illuminate\Foundation\Application $app */
         $app = require __DIR__ . '/../../../bootstrap/app.php';
@@ -193,5 +220,14 @@ class UpgradeCommand extends Command
         }
 
         return sprintf(self::DEFAULT_URL, $this->option('release') ? 'download/v' . $this->option('release') : 'latest/download');
+    }
+
+    protected function getVendorUrl(): string
+    {
+        if ($this->option('url')) {
+            return $this->option('url');
+        }
+
+        return sprintf(self::VENDOR_URL, $this->option('release') ? 'download/v' . $this->option('release') : 'latest/download');
     }
 }

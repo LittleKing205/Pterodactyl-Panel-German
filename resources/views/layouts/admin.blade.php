@@ -101,6 +101,11 @@
                                 <i class="fa fa-globe"></i> <span>Locations</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.subdomain') ?: 'active' }}">
+                            <a href="{{ route('admin.subdomain') }}">
+                                <i class="fa fa-globe"></i> <span>SubDomain Manager</span>
+                            </a>
+                        </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.nodes') ?: 'active' }}">
                             <a href="{{ route('admin.nodes') }}">
                                 <i class="fa fa-sitemap"></i> <span>Nodes</span>

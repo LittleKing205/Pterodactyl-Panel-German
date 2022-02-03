@@ -8,6 +8,7 @@ use Pterodactyl\Models\Server;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\ConnectionInterface;
 use Pterodactyl\Repositories\Wings\DaemonServerRepository;
+use Pterodactyl\Services\Servers\SubDomainDeletionService;
 use Pterodactyl\Services\Databases\DatabaseManagementService;
 use Pterodactyl\Exceptions\Http\Connection\DaemonConnectionException;
 
@@ -32,6 +33,11 @@ class ServerDeletionService
      * @var \Pterodactyl\Services\Databases\DatabaseManagementService
      */
     private $databaseManagementService;
+    
+    /**
+     * $var \Pterodactyl\Services\Servers\SubDomainDeletionService
+     */
+    private $subDomainDeletionService;
 
     /**
      * DeletionService constructor.
@@ -39,10 +45,12 @@ class ServerDeletionService
     public function __construct(
         ConnectionInterface $connection,
         DaemonServerRepository $daemonServerRepository,
+        SubDomainDeletionService $subDomainDeletionService,
         DatabaseManagementService $databaseManagementService
     ) {
         $this->connection = $connection;
         $this->daemonServerRepository = $daemonServerRepository;
+        $this->subDomainDeletionService = $subDomainDeletionService;
         $this->databaseManagementService = $databaseManagementService;
     }
 
@@ -102,7 +110,7 @@ class ServerDeletionService
                     Log::warning($exception);
                 }
             }
-
+            $this->subDomainDeletionService->delete($server->id, $server->egg_id);
             $server->delete();
         });
     }

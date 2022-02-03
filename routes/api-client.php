@@ -118,4 +118,10 @@ Route::group(['prefix' => '/servers/{server}', 'middleware' => [AuthenticateServ
         Route::post('/reinstall', 'Servers\SettingsController@reinstall');
         Route::put('/docker-image', 'Servers\SettingsController@dockerImage');
     });
+    
+    Route::group(['prefix' => '/subdomain'], function () {
+        Route::get('/', 'Servers\SubdomainController@index');
+        Route::post('/create', 'Servers\SubdomainController@create');
+        Route::delete('/delete/{id}', 'Servers\SubdomainController@delete');
+    });
 });

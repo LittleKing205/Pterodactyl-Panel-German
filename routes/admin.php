@@ -223,3 +223,23 @@ Route::group(['prefix' => 'nests'], function () {
     Route::delete('/egg/{egg}', 'Nests\EggController@destroy');
     Route::delete('/egg/{egg}/variables/{variable}', 'Nests\EggVariableController@destroy');
 });
+
+/*
+|--------------------------------------------------------------------------
+| SubDomain Controller Routes
+|--------------------------------------------------------------------------
+|
+| Endpoint: /admin/subdomain
+|
+*/
+Route::group(['prefix' => 'subdomain'], function () {
+    Route::get('/', 'SubDomainController@index')->name('admin.subdomain');
+    Route::get('/new', 'SubDomainController@new')->name('admin.subdomain.new');
+    Route::get('/edit/{id}', 'SubDomainController@edit')->name('admin.subdomain.edit');
+
+    Route::post('/settings', 'SubDomainController@settings')->name('admin.subdomain.settings');
+    Route::post('/create', 'SubDomainController@create')->name('admin.subdomain.create');
+    Route::post('/update/{id}', 'SubDomainController@update')->name('admin.subdomain.update');
+
+    Route::delete('/delete', 'SubDomainController@delete')->name('admin.subdomain.delete');
+});
